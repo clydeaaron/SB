@@ -119,10 +119,13 @@ $(function () {
           email='$email',
           mobilenumber='$contno',
           password='$password',
-          email_verif_at='NULL',
           status = 0
         ";
-          mysqli_query($con, $sql);
+          if(mysqli_query($con, $sql)){
+            ?>
+            <script>alert("Successfully Registered!S")</script>
+            <?php
+          }
 
         }
       }
@@ -182,9 +185,9 @@ $(function () {
     document.querySelector(".LoginContainer").style.display = "block";
   })
 
-  document.getElementById("close-btn").addEventListener("click", function(){
-  document.querySelector(".LoginContainer").style.display = "none";
-})
+//   document.getElementById("close-btn").addEventListener("click", function(){
+//   document.querySelector(".LoginContainer").style.display = "none";
+// })
   </script>
 
     <!-- Footer Start -->
