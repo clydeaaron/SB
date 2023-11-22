@@ -78,15 +78,14 @@ if(isset($_POST['login']))
                 $sql = "INSERT INTO verification_log (`user`, `code`, `date`) VALUES('$id', '$verification_code', NOW())";
                 // insert in users table
                 if(!$mail->send()){
-                    mysqli_query($con, $sql);
         ?>
-                
                     <script>
                         alert("<?php echo "Register Failed, Invalid Email "?>");
                         window.location.replace('login.php');
                     </script>
                 <?php
                 }else{
+                    mysqli_query($con, $sql);
                     ?>
                     <script>
                         alert("<?php echo "Register Successfully, A verification code is sent to " . $emailcon ?>");

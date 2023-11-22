@@ -27,32 +27,26 @@ require 'phpmailer/src/SMTP.php'; ?>
             $email = $_SESSION['mail'];
             $verif_code = $_POST["verif_code"];
             $userid = $_SESSION['bpmsuid'];
-     
-            if($verification_code != $verif_code){
-                ?>
-               <script>
-                   alert("Invalid verification code");
-               </script>
-               <?php
-            }else{
-                $sql = "UPDATE tbluser SET status = 1, email_verif_at = NOW() WHERE email = '" . $email . "' AND verification_code = '" . $verification_code . "'";
-                $sql = "SELECT code FROM verification_log WHERE `user = '$userid' ORDER BY `date` DESC LIMIT 1";
-                $result  = mysqli_query($con, $sql);
-                if(mysqli_num_rows($result)){
-                ?>
-                 <script>
-                    window.location.replace("verified.php");
-                 </script>
-                 <?php
-                } else {
+
+            $sql = "SELECT * FROM verification_log WHERE user = '$userid' AND code = '$verif_code' ORDER BY id DESC LIMIT 1";
+            $query = mysqli_query($con, $sql);
+
+            if(mysqli_num_rows($query) != 0){
+                $sql = "UPDATE tbluser SET `status` = 1, WHERE user = '$userid'";
+                if(mysqli_query($con, $sql)){
                     ?>
                     <script>
-                        alert('Verification Failed!');
+                        window.location.replace("verified.php");
                     </script>
                     <?php
                 }
-            }
-
+            } else {
+                ?>
+                <script>
+                    alert("Invalid verification code");
+                </script>
+                <?php
+            }   66
         }
 
     ?>
