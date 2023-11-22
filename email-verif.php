@@ -46,7 +46,7 @@ require 'phpmailer/src/SMTP.php'; ?>
                     alert("Invalid verification code");
                 </script>
                 <?php
-            }   66
+            } 
         }
 
     ?>
