@@ -20,19 +20,24 @@ require 'phpmailer/src/SMTP.php'; ?>
     <?php
 
     session_start();
- 
         if (isset($_POST["verify_email"]))
         {
             $verification_code = $_SESSION['vc'];
             $email = $_SESSION['mail'];
             $verif_code = $_POST["verif_code"];
             $userid = $_SESSION['bpmsuid'];
+            
 
-            $sql = "SELECT * FROM verification_log WHERE user = '$userid' AND code = '$verif_code' ORDER BY id DESC LIMIT 1";
+            // $sql = "SELECT a.* FROM verification_log a 
+            // LEFT JOIN tbluser b on a.user = b.id 
+            // WHERE b.Email = '$email' AND code = '$verif_code' ORDER BY id DESC LIMIT 1";
+
+            $sql = "SELECT * FROM verification_log 
+            WHERE user = '$userid' AND code = '$verif_code' ORDER BY id DESC LIMIT 1";
             $query = mysqli_query($con, $sql);
 
             if(mysqli_num_rows($query) != 0){
-                $sql = "UPDATE tbluser SET `status` = 1, WHERE user = '$userid'";
+                $sql = "UPDATE tbluser SET `status` = 1 WHERE user = '$userid'";
                 if(mysqli_query($con, $sql)){
                     ?>
                     <script>

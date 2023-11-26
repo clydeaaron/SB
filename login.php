@@ -17,8 +17,8 @@ if(isset($_POST['login']))
     $query=mysqli_query($con,"select ID from tbluser where  (Email='$emailcon' || MobileNumber='$emailcon') && Password='$password'");
     $check_query=mysqli_fetch_array($query);
     if($check_query>0){
+        $_SESSION['bpmsuid']=$check_query['ID'];
         if($check_query['status'] == 1){
-            $_SESSION['bpmsuid']=$check_query['ID'];
             header('location:index.php');
         } else {
             //Instantiation and passing `true` enables exceptions
