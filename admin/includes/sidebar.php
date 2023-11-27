@@ -15,6 +15,9 @@
                   <a href="manage-services.php">Manage Services</a>
                 </li>
                 <li>
+                  <a href="manage-doctor.php">Manage Doctor</a>
+                </li>
+                <li>
                   <a href="calendar.php">Calendar</a>
                 </li>
               </ul>

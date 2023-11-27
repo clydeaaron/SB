@@ -75,6 +75,7 @@ while ($row=mysqli_fetch_array($ret)) {
 
 						 <tr> <th scope="row"><?php echo $cnt;?></th> <td><?php  echo $row['ServiceName'];?></td> <td><?php  echo $row['Cost'];?></td><td><?php  echo $row['CreationDate'];?></td> <td>
 						 	<a href="edit-services.php?editid=<?php echo $row['ID'];?>" class="btn btn-primary">Edit</a>
+							<a href="javascript:;" onclick="service_status.call(this)" value="<?= $row['ID'] ?>" class="btn"><?= $row['status'] === 1 ? "Active" : "Inactive" ?></a>
 						 	<a href="manage-services.php?delid=<?php echo $row['ID'];?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
 
 						 	</td> </tr>   <?php 
@@ -117,3 +118,13 @@ $cnt=$cnt+1;
 </body>
 </html>
 <?php }  ?>
+<script>
+	function service_status(){
+		let id = this.value
+		console.log(id)
+		// $.ajax({
+		// 	url: "th_servicstatus.php",
+		// 	data
+		// })
+	}
+</script>
