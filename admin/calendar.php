@@ -78,7 +78,11 @@
         <div class="main-page">
           <div class="row calender widget-shadow">
             <div class="row-one">
-              <div id='calendar' ></div>
+              <div style="display: flex; justify-items: right; justify-content: right; width: 100%; margin-right: 0;">
+                  <div style="width: 75%; height: 50%">
+                      <div id="calendar"></div>
+                  </div>
+              </div>
             </div>
           </div>
         </div >
@@ -133,24 +137,12 @@
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
           initialDate: new Date(),
-          editable: false,
+          editable: true,
           selectable: true,
           businessHours: true,
           dayMaxEvents: true,
           events: schedules,
-          eventRender: function (info) {
-            var start = formatAMPM(info.event.start);
-            var end = formatAMPM(info.event.end);
-            var timeText = start + ' - ' + end;
-            info.el.querySelector('.fc-time').innerText = timeText;
-
-            // Add custom classes based on AM/PM
-            if (info.event.start.getHours() < 12) {
-              info.el.classList.add('event-am');
-            } else {
-              info.el.classList.add('event-pm');
-            }
-          }
+          
         });
 
         calendar.render();

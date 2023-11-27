@@ -11,7 +11,6 @@
                 <span class="fa icon-expand fa-bars"></span>
         <span class="fa icon-close fa-times"></span>
             </button>
-      
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
@@ -26,6 +25,9 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="contact.php">Contact</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="calendar.php"> Calendar</a>
                     </li>
                      
                     <?php if ( !isset($_SESSION['bpmsuid'])) {?> 
