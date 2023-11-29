@@ -6,8 +6,12 @@
         <!--logo -->
         <div class="logo">
           <a href="index.html">
-            <h1>SB Aesthetic</h1>
-            <span>AdminPanel</span>
+            <?php 
+              $sql = "SELECT * FROM tblgroupings WHERE code = 'LOGO'";
+              $query = mysqli_query($con, $sql);
+              $row = $query -> fetch_assoc();
+            ?>
+            <img src="<?= "./admin/images/" . $row['value'] ?>" alt="LOGO">
           </a>
         </div>
         <!--//logo-->

@@ -63,30 +63,20 @@ if($_GET['delid']){
             <div style="width: 50%">
 
             </div>
-            <div style="width: 50%;">
+            <div style="width: 75%;">
                 <div  style="display: flex; padding: 10px;">
                     <label for="full_name">Enter Name: </label>
                     <input type="text" class="form-control input-sm" id="full_name">
                 </div>
                 <div  style="display: flex; padding: 10px;">
-                    <label for="address">Enter Address</label>
+                    <label for="address">Enter Email Address</label>
                     <input type="text" class="form-control input-sm" id="address">
                 </div>
+                <div style="display: flex; padding: 10px;">
+                    <label for="password">Enter Password</label>
+                    <input type="password" class="form-control input-sm" >
+                </div>
                 
-                <div  style="display: flex; padding: 10px;">
-                    <label>Gender: </label>
-                    <input type="radio" name="gender" id="gender" value="Male" style="margin-left: 20px">
-                    <label for="gender">Male</label>
-                    <input type="radio" name="gender" id="gender" value="Female" style="margin-left: 10px">
-                    <label for="gender">Female</label>
-                </div>
-                <div  style="display: flex; padding: 10px;">
-                    <label for="doctor">Doctor Type: </label>
-                        <select name="doctor" class="form-control input-sm" id="doctor">
-                            <option value="Nurse">Nurse</option>
-                            <option value="Doctor">Doctor</option>
-                        </select>
-                </div>
                 <div  style="display: flex; padding: 10px;">
                     <button type="button" id="submit">Submit</button>
                 </div>

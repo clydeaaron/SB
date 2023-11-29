@@ -3,6 +3,13 @@
         <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <h1><a class="navbar-brand" href="index.php"> <!--<span class="fa fa-line-chart" aria-hidden="true"></span> -->
+            
+            <?php 
+                $sql = "SELECT * FROM tblgroupings WHERE code = 'LOGO'";
+                $query = mysqli_query($con, $sql);
+                $row = $query -> fetch_assoc();
+            ?>
+                <img src="<?= "./images/" . $row['value'] ?>" alt="LOGO">
             <!--SB-->
             </a></h1>
             <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse"

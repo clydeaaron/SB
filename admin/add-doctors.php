@@ -97,8 +97,10 @@ move_uploaded_file($_FILES["image"]["tmp_name"],"images/".$newimage);
     echo $msg;
   }  ?> </p>
 							 <div class="form-group"> <label for="exampleInputEmail1">Doctor's/Staff's Name</label> <input type="text" class="form-control" id="sername" name="sername" placeholder="Doctor's/Staff's Name" value="" required="true"> </div>
-							 <div class="form-group"> <label for="exampleInputEmail1">Doctor's/Staff's Description</label> <textarea type="text" class="form-control" id="sername" name="serdesc" placeholder="Doctor's/Staff's Description" value="" required="true"></textarea> </div>
-							<div class="form-group"> <label for="exampleInputEmail1">Profile Picture</label> <input type="file" class="form-control" id="image" name="image" value="" required="true"> </div>
+							 <div class="form-group"> <label for="exampleInputEmail1">Doctor's/Staff's Username</label> <input type="text" class="form-control" id="user" name="user" required="true"></div>
+							 <div class="form-group"> <label for="exampleInputEmail1">Doctor's/Staff's Email</label> <input type="text" class="form-control" name="email" id="email" required="true"> </div>
+							 <div class="form-group"> <label for="exampleInputEmail1">Doctor's/Staff's Phone Number</label> <input type="number" name="phone" id="phone" class="form-control" required> </div>
+							<div class="form-group"> <label for="exampleInputEmail1">Doctor's/Staff's Password</label> <input type="password" name="password" id="password" class="from-control" required="true"> </div>
 							  <button type="submit" name="submit" class="btn btn-default">Add</button> </form> 
 						</div>
 						
@@ -135,4 +137,34 @@ move_uploaded_file($_FILES["image"]["tmp_name"],"images/".$newimage);
    <script src="js/bootstrap.js"> </script>
 </body>
 </html>
+
+<script>
+    $(document).ready(function(){
+        $("#submit").click(function(){
+            let name = $("#sername").val();
+            let email = $("#email").val();
+			let user = $("#user").val();
+			let phone = $("#phone").val();
+            let password = $("#password").val();
+            
+            $.ajax({
+                url: "function/th_doctor.php",
+                data: {
+                    name: name,
+                    email: email,
+					user: user,
+					phone: phone,
+					password: password
+                },
+                success: function(res){
+                    alert(res.msg)
+                },
+                error: function(res){
+                    console.log(res)
+                }
+            })
+
+        })
+    })
+</script>
 <?php } ?>

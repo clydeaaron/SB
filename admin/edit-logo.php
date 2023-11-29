@@ -6,6 +6,20 @@ if (strlen($_SESSION['bpmsaid']==0)) {
   header('location:logout.php');
   } else{
 
+	if(isset($_POST)){
+		$image = $_FILES['image'];
+		$name = $image['name'];
+
+		$tmp = $image['tmp_name'];
+		if(!is_dir("./images")){
+			mkdir("./image", 777);
+		}
+		if(move_uploaded_file($image["tmp_name"], "./images")){
+			$sql = "INSERT INTO tblgroupings (`code`, `value`) VALUES ('LOGO', '$tmp')";
+			mysqli_query($con, $sql);
+		}
+		
+	}
 /*if(isset($_POST['submit']))
   {
    $image=$_POST['image'];

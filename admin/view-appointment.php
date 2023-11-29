@@ -11,7 +11,8 @@ if(isset($_POST['submit']))
     $cid=$_GET['viewid'];
       $remark=$_POST['remark'];
       $status=$_POST['status'];
-   $query=mysqli_query($con, "update  tblbook set Remark='$remark',Status='$status' where ID='$cid'");
+      $doctor = $_SESSION['bpmsaid'];
+   $query=mysqli_query($con, "update  tblbook set Doctor='$doctor', Remark='$remark',Status='$status' where ID='$cid'");
     if ($query) {
     
     echo '<script>alert("All remark has been updated.")</script>';

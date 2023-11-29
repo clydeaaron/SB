@@ -5,11 +5,12 @@
     include('../includes/dbconnection.php');
 
     $name = $_REQUEST['name'];
-    $addres = $_REQUEST['address'];
-    $gender = $_REQUEST['gender'];
-    $type = $_REQUEST['type'];
+    $user = $_REQUEST['user'];
+    $email = $_REQUEST['email'];
+    $phone = $_REQUEST['phone'];
+    $password = $_REQUEST['password'];
 
-    $sql = "INSERT INTO tbldoctor (`name`, `address`, `gender`, `type`, `status`) VALUES ('$name', '$address', '$gender', '$type', 1)";
+    $sql = "INSERT INTO tblAdmin (`AdminName`, `UserName`, `MobileNumber`, `Email`, `Password`, `AdminRegDate`) VALUES ('$name', '$user', '$phone', '$email', '$password', NOW())";
     if(mysqli_query($con, $sql)){
         echo json_encode([
             'valid' => true,

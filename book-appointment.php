@@ -4,7 +4,13 @@ error_reporting(0);
 include('includes/dbconnection.php');
 if (strlen($_SESSION['bpmsuid']==0)) {
   header('location:logout.php');
-  } else{
+} 
+    $services = [];
+    $sql = "SELECT * FROM tblservices";
+    $query = mysqli_query($con, $sql);
+    while($row = $query -> fetch_assoc()){
+        array_push($services, $row);
+    }
 
 if(isset($_POST['submit']))
   {
@@ -14,8 +20,9 @@ if(isset($_POST['submit']))
     $atime=$_POST['atime'];
     $msg=$_POST['message'];
     $aptnumber = mt_rand(100000000, 999999999);
+    $service = $_POST['menuitem']
   
-    $query=mysqli_query($con,"insert into tblbook(UserID,AptNumber,AptDate,AptTime,Message) value('$uid','$aptnumber','$adate','$atime','$msg')");
+    $query=mysqli_query($con,"insert into tblbook(UserID,AptNumber,AptDate,AptTime,Message,Service) value('$uid','$aptnumber','$adate','$atime','$msg','$service')");
 
     if ($query) {
 $ret=mysqli_query($con,"select AptNumber from tblbook where tblbook.UserID='$uid' order by ID desc limit 1;");
@@ -146,7 +153,7 @@ while ($row=mysqli_fetch_array($ret)) {
                         <div style="padding-top: 30px;">
                             <label>Services</label>
 
-                            <div class="dropdown">
+                            <!-- <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Choose Service:
                             <span class="caret"></span></button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
@@ -158,7 +165,13 @@ while ($row=mysqli_fetch_array($ret)) {
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Surgical Noselift</a></li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Eyebrow Microblading</a></li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Scalp Embroidery</a></li>
-                            </ul>
+                            </ul> -->
+                            <div >
+                                <select class="form-control" name="menuitem" id="menuitem">
+                                    <?php foreach($services as $list):?>
+                                        <option value="<?= $list['ServiceName'] ?>"><?= $list['ServiceName'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                             
                         <div style="padding-top: 30px;">
@@ -220,4 +233,4 @@ $(function(){
 <!-- /move top -->
 </body>
 
-</html><?php } ?>
+</html>
